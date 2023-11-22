@@ -1,24 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment } from 'react';
+import HeaderComponent from './components/header/HeaderComponent';
+import FooterComponent from './components/footer/FooterComponent';
+import FormComponent from './components/form/FormComponent';
+import ContentComponent from './components/content/ContentComponent';
+import { createBrowserRouter, RouterProvider, } from "react-router-dom";
+import ListAlunos from './components/alunos/ListAlunos';
+
+
+const router = createBrowserRouter([
+  {
+    path: "/",   element: <ContentComponent/>,
+  },
+  {
+    path: "/form",   element: <FormComponent/>,
+  },
+  {
+    path: "/list",   element: <ListAlunos/>,
+  },
+
+]);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="flex flex-col justify-between h-screen">
+        <Fragment>
+          <HeaderComponent/>
+          <RouterProvider router={router} />
+          <FooterComponent/>
+        </Fragment>
     </div>
   );
 }
